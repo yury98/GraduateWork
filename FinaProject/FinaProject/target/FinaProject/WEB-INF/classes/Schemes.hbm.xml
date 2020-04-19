@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="models.Schemes" table="Schemes" schema="dbo" catalog="TestDatabase">
+        <id name="schemeId">
+            <column name="SchemeId" sql-type="int"/>
+        </id>
+        <property name="schemeName">
+            <column name="SchemeName" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="schemeAlias">
+            <column name="SchemeAlias" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="creationDate">
+            <column name="CreationDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <many-to-one name="usersByCratedBy" class="models.Users">
+            <column name="CratedBy"/>
+        </many-to-one>
+        <set name="tasksBySchemeId" inverse="true">
+            <key>
+                <column name="SchemeId"/>
+            </key>
+            <one-to-many not-found="ignore" class="models.Tasks"/>
+        </set>
+    </class>
+</hibernate-mapping>

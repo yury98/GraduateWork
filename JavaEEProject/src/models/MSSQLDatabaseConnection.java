@@ -7,16 +7,16 @@ import java.sql.SQLException;
 public class MSSQLDatabaseConnection {
     public static void connectMSSQL() {
         String connectionUrl =
-                "jdbc:sqlserver://yourserver.database.windows.net:1433;"
-                        + "database=AdventureWorks;"
-                        + "user=yourusername@yourserver;"
-                        + "password=yourpassword;"
+                "jdbc:sqlserver://10.211.55.4.testDatabase.windows.net:1433;"
+                        + "database=testDatabase;"
+                        + "user=yurez@BB09;"
+                        + "password=ifirby;"
                         + "encrypt=true;"
-                        + "trustServerCertificate=false;"
+                        + "trustServerCertificate=true;"
                         + "loginTimeout=30;";
 
         try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-            // Code here.
+
         }
         // Handle any errors that may have occurred.
         catch (SQLException e) {

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="models.UsersEntity" table="Users" schema="dbo" catalog="TestDatabase">
+        <id name="userId">
+            <column name="UserId" sql-type="int"/>
+        </id>
+        <property name="login">
+            <column name="Login" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="password">
+            <column name="Password" sql-type="nvarchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="lastLogin">
+            <column name="LastLogin" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="userInfo">
+            <column name="UserInfo" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

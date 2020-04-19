@@ -1,0 +1,12 @@
+models/TestResultsEntity.class
+models/UsersEntity.class
+controllers/TestServlet.class
+models/TaskTagsEntity.class
+models/TagsEntity.class
+models/SchemesEntity.class
+models/PacksSendingsEntity.class
+models/TasksEntity.class
+models/TasksOfPacksEntity.class
+models/ChangeHistoryEntity.class
+models/PacksEntity.class
+models/OrgUnitEntity.class

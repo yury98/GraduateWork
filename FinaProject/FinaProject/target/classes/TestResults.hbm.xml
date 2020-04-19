@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="models.TestResults" table="TestResults" schema="dbo" catalog="TestDatabase">
+        <id name="resultId">
+            <column name="ResultId" sql-type="int"/>
+        </id>
+        <property name="result">
+            <column name="Result" sql-type="tinyint" not-null="true"/>
+        </property>
+        <property name="candidatesAnswer">
+            <column name="CandidatesAnswer" sql-type="nvarchar(4000)" length="4000" not-null="true"/>
+        </property>
+        <many-to-one name="packsSendingsBySendingId" class="models.PacksSendings">
+            <column name="SendingId"/>
+        </many-to-one>
+        <many-to-one name="tasksByTaskId" class="models.Tasks">
+            <column name="TaskId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
