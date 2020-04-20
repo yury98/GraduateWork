@@ -4,34 +4,35 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:sqlserver://10.211.55.4;database=testDatabase</property>
+    <property name="connection.url">jdbc:sqlserver://10.211.55.4;database=Project</property>
     <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
     <property name="show_sql">true</property>
+
     <property name="connection.username">yurez</property>
     <property name="connection.password">ifirby</property>
     <mapping resource="ChangeHistory.hbm.xml"/>
-    <mapping class="model.ChangeHistory"/>
+    <mapping class="models.ChangeHistory"/>
     <mapping resource="OrgUnit.hbm.xml"/>
-    <mapping class="model.OrgUnit"/>
+    <mapping class="models.OrgUnit"/>
     <mapping resource="Packs.hbm.xml"/>
-    <mapping class="model.Packs"/>
+    <mapping class="models.Packs"/>
     <mapping resource="PacksSendings.hbm.xml"/>
-    <mapping class="model.PacksSendings"/>
+    <mapping class="models.PacksSendings"/>
     <mapping resource="Schemes.hbm.xml"/>
-    <mapping class="model.Schemes"/>
+    <mapping class="models.Schemes"/>
     <mapping resource="Tags.hbm.xml"/>
-    <mapping class="model.Tags"/>
+    <mapping class="models.Tags"/>
     <mapping resource="TaskTags.hbm.xml"/>
-    <mapping class="model.TaskTags"/>
+    <mapping class="models.TaskTags"/>
     <mapping resource="Tasks.hbm.xml"/>
-    <mapping class="model.Tasks"/>
+    <mapping class="models.Tasks"/>
     <mapping resource="TasksOfPacks.hbm.xml"/>
-    <mapping class="model.TasksOfPacks"/>
+    <mapping class="models.TasksOfPacks"/>
     <mapping resource="TestResults.hbm.xml"/>
-    <mapping class="model.TestResults"/>
+    <mapping class="models.TestResults"/>
     <mapping resource="Users.hbm.xml"/>
-    <mapping class="model.Users"/>
+    <mapping class="models.Users"/>
 
 
     <!-- <property name="connection.username"/> -->

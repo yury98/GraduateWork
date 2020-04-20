@@ -10,28 +10,11 @@
     <property name="show_sql">true</property>
     <property name="connection.username">yurez</property>
     <property name="connection.password">ifirby</property>
-    <mapping resource="ChangeHistory.hbm.xml"/>
-    <mapping class="models.ChangeHistory"/>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <mapping resource="OrgUnit.hbm.xml"/>
     <mapping class="models.OrgUnit"/>
-    <mapping resource="Packs.hbm.xml"/>
-    <mapping class="models.Packs"/>
-    <mapping resource="PacksSendings.hbm.xml"/>
-    <mapping class="models.PacksSendings"/>
-    <mapping resource="Schemes.hbm.xml"/>
-    <mapping class="models.Schemes"/>
-    <mapping resource="Tags.hbm.xml"/>
-    <mapping class="models.Tags"/>
-    <mapping resource="TaskTags.hbm.xml"/>
-    <mapping class="models.TaskTags"/>
-    <mapping resource="Tasks.hbm.xml"/>
-    <mapping class="models.Tasks"/>
-    <mapping class="models.TasksOfPacks"/>
-    <mapping resource="TasksOfPacks.hbm.xml"/>
-    <mapping resource="TestResults.hbm.xml"/>
-    <mapping class="models.TestResults"/>
-    <mapping resource="Users.hbm.xml"/>
     <mapping class="models.Users"/>
+    <mapping resource="Users.hbm.xml"/>
 
 
   </session-factory>

@@ -10,6 +10,9 @@ public class OrgUnit {
     private String orgUnitShartName;
     private Collection<Users> usersByOrgUnitId;
 
+    public OrgUnit() {
+    }
+
     @Id
     @Column(name = "OrgUnitId", nullable = false)
     public int getOrgUnitId() {

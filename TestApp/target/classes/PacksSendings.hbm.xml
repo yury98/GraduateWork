@@ -4,18 +4,24 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="model.PacksSendings" table="PacksSendings" schema="dbo" catalog="TestDatabase">
+    <class name="models.PacksSendings" table="PacksSendings" schema="dbo" catalog="Project">
         <id name="sendingId">
             <column name="SendingId" sql-type="int"/>
         </id>
-        <property name="packId">
-            <column name="PackId" sql-type="int"/>
-        </property>
         <property name="sendingDate">
             <column name="SendingDate" sql-type="datetime" not-null="true"/>
         </property>
         <property name="sendingEmail">
             <column name="SendingEmail" sql-type="varchar(100)" length="100" not-null="true"/>
         </property>
+        <many-to-one name="packsByPackId" class="models.Packs">
+            <column name="PackId"/>
+        </many-to-one>
+        <set name="testResultsBySendingId" inverse="true">
+            <key>
+                <column name="SendingId"/>
+            </key>
+            <one-to-many not-found="ignore" class="models.TestResults"/>
+        </set>
     </class>
 </hibernate-mapping>

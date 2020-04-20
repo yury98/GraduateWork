@@ -14,9 +14,6 @@
         <property name="password">
             <column name="Password" sql-type="nvarchar(45)" length="45" not-null="true"/>
         </property>
-        <property name="orgUnitId">
-            <column name="OrgUnitId" sql-type="int"/>
-        </property>
         <property name="lastLogin">
             <column name="LastLogin" sql-type="datetime" not-null="true"/>
         </property>
@@ -26,35 +23,5 @@
         <many-to-one name="orgUnitByOrgUnitId" class="models.OrgUnit">
             <column name="OrgUnitId"/>
         </many-to-one>
-        <set name="changeHistoriesByUserId" inverse="true">
-            <key>
-                <column name="ChangeHistoryUserId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.ChangeHistory"/>
-        </set>
-        <set name="packsByUserId" inverse="true">
-            <key>
-                <column name="CreatedBy"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.Packs"/>
-        </set>
-        <set name="schemesByUserId" inverse="true">
-            <key>
-                <column name="CratedBy"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.Schemes"/>
-        </set>
-        <set name="tagsByUserId" inverse="true">
-            <key>
-                <column name="CreatedBy"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.Tags"/>
-        </set>
-        <set name="tasksByUserId" inverse="true">
-            <key>
-                <column name="CreatedBy"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.Tasks"/>
-        </set>
     </class>
 </hibernate-mapping>
