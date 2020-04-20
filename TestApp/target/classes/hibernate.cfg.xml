@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:sqlserver://10.211.55.4;database=testDatabase</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+    <property name="show_sql">true</property>
+    <property name="connection.username">yurez</property>
+    <property name="connection.password">ifirby</property>
+    <mapping resource="ChangeHistory.hbm.xml"/>
+    <mapping class="model.ChangeHistory"/>
+    <mapping resource="OrgUnit.hbm.xml"/>
+    <mapping class="model.OrgUnit"/>
+    <mapping resource="Packs.hbm.xml"/>
+    <mapping class="model.Packs"/>
+    <mapping resource="PacksSendings.hbm.xml"/>
+    <mapping class="model.PacksSendings"/>
+    <mapping resource="Schemes.hbm.xml"/>
+    <mapping class="model.Schemes"/>
+    <mapping resource="Tags.hbm.xml"/>
+    <mapping class="model.Tags"/>
+    <mapping resource="TaskTags.hbm.xml"/>
+    <mapping class="model.TaskTags"/>
+    <mapping resource="Tasks.hbm.xml"/>
+    <mapping class="model.Tasks"/>
+    <mapping resource="TasksOfPacks.hbm.xml"/>
+    <mapping class="model.TasksOfPacks"/>
+    <mapping resource="TestResults.hbm.xml"/>
+    <mapping class="model.TestResults"/>
+    <mapping resource="Users.hbm.xml"/>
+    <mapping class="model.Users"/>
+
+
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

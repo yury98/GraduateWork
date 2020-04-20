@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="models.TasksOfPacks" table="TasksOfPacks" schema="dbo" catalog="TestDatabase">
+        <id name="tasksOfPacksId">
+            <column name="TasksOfPacksId" sql-type="int"/>
+        </id>
+        <property name="taskId">
+            <column name="TaskId" sql-type="int"/>
+        </property>
+        <property name="packId">
+            <column name="PackId" sql-type="int"/>
+        </property>
+        <many-to-one name="tasksByTaskId" class="models.Tasks">
+            <column name="TaskId"/>
+        </many-to-one>
+        <many-to-one name="packsByPackId" class="models.Packs">
+            <column name="PackId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
