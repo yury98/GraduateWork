@@ -1,16 +1,17 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Tags {
     private int tagId;
     private String tagName;
     private Timestamp creationDate;
-    private Users usersByCreatedBy;
-    private Collection<TaskTags> taskTagsByTagId;
+    private int createdBy;
 
     @Id
     @Column(name = "TagId", nullable = false)
@@ -42,6 +43,16 @@ public class Tags {
         this.creationDate = creationDate;
     }
 
+    @Basic
+    @Column(name = "CreatedBy", nullable = false)
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +61,7 @@ public class Tags {
         Tags tags = (Tags) o;
 
         if (tagId != tags.tagId) return false;
+        if (createdBy != tags.createdBy) return false;
         if (tagName != null ? !tagName.equals(tags.tagName) : tags.tagName != null) return false;
         if (creationDate != null ? !creationDate.equals(tags.creationDate) : tags.creationDate != null) return false;
 
@@ -61,25 +73,7 @@ public class Tags {
         int result = tagId;
         result = 31 * result + (tagName != null ? tagName.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = 31 * result + createdBy;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "CreatedBy", referencedColumnName = "UserId", nullable = false)
-    public Users getUsersByCreatedBy() {
-        return usersByCreatedBy;
-    }
-
-    public void setUsersByCreatedBy(Users usersByCreatedBy) {
-        this.usersByCreatedBy = usersByCreatedBy;
-    }
-
-    @OneToMany(mappedBy = "tagsByTagId")
-    public Collection<TaskTags> getTaskTagsByTagId() {
-        return taskTagsByTagId;
-    }
-
-    public void setTaskTagsByTagId(Collection<TaskTags> taskTagsByTagId) {
-        this.taskTagsByTagId = taskTagsByTagId;
     }
 }

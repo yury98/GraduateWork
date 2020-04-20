@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="models.Tags" table="Tags" schema="dbo" catalog="TestDatabase">
+    <class name="model.Tags" table="Tags" schema="dbo" catalog="TestDatabase">
         <id name="tagId">
             <column name="TagId" sql-type="int"/>
         </id>
@@ -14,14 +14,8 @@
         <property name="creationDate">
             <column name="CreationDate" sql-type="datetime" not-null="true"/>
         </property>
-        <many-to-one name="usersByCreatedBy" class="models.Users">
-            <column name="CreatedBy"/>
-        </many-to-one>
-        <set name="taskTagsByTagId" inverse="true">
-            <key>
-                <column name="TagId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.TaskTags"/>
-        </set>
+        <property name="createdBy">
+            <column name="CreatedBy" sql-type="int"/>
+        </property>
     </class>
 </hibernate-mapping>

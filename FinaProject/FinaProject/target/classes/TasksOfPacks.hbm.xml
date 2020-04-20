@@ -8,6 +8,12 @@
         <id name="tasksOfPacksId">
             <column name="TasksOfPacksId" sql-type="int"/>
         </id>
+        <property name="taskId">
+            <column name="TaskId" sql-type="int"/>
+        </property>
+        <property name="packId">
+            <column name="PackId" sql-type="int"/>
+        </property>
         <many-to-one name="tasksByTaskId" class="models.Tasks">
             <column name="TaskId"/>
         </many-to-one>

@@ -1,12 +1,7 @@
 package controllers;
 
 import models.Users;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 
 public class UserInfo {
 
@@ -32,28 +27,26 @@ public class UserInfo {
 
         Transaction transaction = null;
         Users user = null;
-        Configuration config = new Configuration();
-        SessionFactory sessionFactory = config.configure().buildSessionFactory();
-        try (Session session = sessionFactory.openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
-            // get an user object
-            List<Users> users = (List<Users>) session.createQuery("from Users")
-                    .list();
-
-            user = users.get(0);
-
-            if (user != null && user.getPassword().equals(password)) {
-                return true;
-            }
-            // commit transaction
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+//        try (Session session = new AnnotationConfiguration().configure()
+//                .buildSessionFactory().openSession()) {
+//            // start a transaction
+//            transaction = session.beginTransaction();
+//            // get an user object
+//            user = (Users) session.createQuery("FROM Users U WHERE U.login = :login")
+//                    .setParameter("login", login)
+//                    .uniqueResult();
+//
+//            if (user != null && user.getPassword().equals(password)) {
+//                return true;
+//            }
+//            // commit transaction
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        }
         return false;
     }
 }

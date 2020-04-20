@@ -1,19 +1,19 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Packs {
     private int packId;
+    private int createdBy;
     private Timestamp creationDate;
     private String packName;
     private String packDescription;
     private Integer packTime;
-    private Users usersByCreatedBy;
-    private Collection<PacksSendings> packsSendingsByPackId;
-    private Collection<TasksOfPacks> tasksOfPacksByPackId;
 
     @Id
     @Column(name = "PackId", nullable = false)
@@ -23,6 +23,16 @@ public class Packs {
 
     public void setPackId(int packId) {
         this.packId = packId;
+    }
+
+    @Basic
+    @Column(name = "CreatedBy", nullable = false)
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Basic
@@ -73,6 +83,7 @@ public class Packs {
         Packs packs = (Packs) o;
 
         if (packId != packs.packId) return false;
+        if (createdBy != packs.createdBy) return false;
         if (creationDate != null ? !creationDate.equals(packs.creationDate) : packs.creationDate != null) return false;
         if (packName != null ? !packName.equals(packs.packName) : packs.packName != null) return false;
         if (packDescription != null ? !packDescription.equals(packs.packDescription) : packs.packDescription != null)
@@ -85,38 +96,11 @@ public class Packs {
     @Override
     public int hashCode() {
         int result = packId;
+        result = 31 * result + createdBy;
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (packName != null ? packName.hashCode() : 0);
         result = 31 * result + (packDescription != null ? packDescription.hashCode() : 0);
         result = 31 * result + (packTime != null ? packTime.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "CreatedBy", referencedColumnName = "UserId", nullable = false)
-    public Users getUsersByCreatedBy() {
-        return usersByCreatedBy;
-    }
-
-    public void setUsersByCreatedBy(Users usersByCreatedBy) {
-        this.usersByCreatedBy = usersByCreatedBy;
-    }
-
-    @OneToMany(mappedBy = "packsByPackId")
-    public Collection<PacksSendings> getPacksSendingsByPackId() {
-        return packsSendingsByPackId;
-    }
-
-    public void setPacksSendingsByPackId(Collection<PacksSendings> packsSendingsByPackId) {
-        this.packsSendingsByPackId = packsSendingsByPackId;
-    }
-
-    @OneToMany(mappedBy = "packsByPackId")
-    public Collection<TasksOfPacks> getTasksOfPacksByPackId() {
-        return tasksOfPacksByPackId;
-    }
-
-    public void setTasksOfPacksByPackId(Collection<TasksOfPacks> tasksOfPacksByPackId) {
-        this.tasksOfPacksByPackId = tasksOfPacksByPackId;
     }
 }

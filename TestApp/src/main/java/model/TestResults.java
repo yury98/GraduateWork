@@ -1,14 +1,17 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class TestResults {
     private int resultId;
+    private int sendingId;
+    private int taskId;
     private Byte result;
     private String candidatesAnswer;
-    private PacksSendings packsSendingsBySendingId;
-    private Tasks tasksByTaskId;
 
     @Id
     @Column(name = "ResultId", nullable = false)
@@ -18,6 +21,26 @@ public class TestResults {
 
     public void setResultId(int resultId) {
         this.resultId = resultId;
+    }
+
+    @Basic
+    @Column(name = "SendingId", nullable = false)
+    public int getSendingId() {
+        return sendingId;
+    }
+
+    public void setSendingId(int sendingId) {
+        this.sendingId = sendingId;
+    }
+
+    @Basic
+    @Column(name = "TaskId", nullable = false)
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     @Basic
@@ -48,6 +71,8 @@ public class TestResults {
         TestResults that = (TestResults) o;
 
         if (resultId != that.resultId) return false;
+        if (sendingId != that.sendingId) return false;
+        if (taskId != that.taskId) return false;
         if (result != null ? !result.equals(that.result) : that.result != null) return false;
         if (candidatesAnswer != null ? !candidatesAnswer.equals(that.candidatesAnswer) : that.candidatesAnswer != null)
             return false;
@@ -58,28 +83,10 @@ public class TestResults {
     @Override
     public int hashCode() {
         int result1 = resultId;
+        result1 = 31 * result1 + sendingId;
+        result1 = 31 * result1 + taskId;
         result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
         result1 = 31 * result1 + (candidatesAnswer != null ? candidatesAnswer.hashCode() : 0);
         return result1;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "SendingId", referencedColumnName = "SendingId", nullable = false)
-    public PacksSendings getPacksSendingsBySendingId() {
-        return packsSendingsBySendingId;
-    }
-
-    public void setPacksSendingsBySendingId(PacksSendings packsSendingsBySendingId) {
-        this.packsSendingsBySendingId = packsSendingsBySendingId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "TaskId", referencedColumnName = "TaskId", nullable = false)
-    public Tasks getTasksByTaskId() {
-        return tasksByTaskId;
-    }
-
-    public void setTasksByTaskId(Tasks tasksByTaskId) {
-        this.tasksByTaskId = tasksByTaskId;
     }
 }

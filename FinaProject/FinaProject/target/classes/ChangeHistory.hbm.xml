@@ -11,6 +11,9 @@
         <property name="changeHistoryDate">
             <column name="ChangeHistoryDate" sql-type="datetime" not-null="true"/>
         </property>
+        <property name="changeHistoryUserId">
+            <column name="ChangeHistoryUserId" sql-type="int"/>
+        </property>
         <property name="changeHistoryInfo">
             <column name="ChangeHistoryInfo" sql-type="nvarchar(max)" length="2147483647" not-null="true"/>
         </property>

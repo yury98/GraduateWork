@@ -1,14 +1,15 @@
-package models;
+package model;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class OrgUnit {
     private int orgUnitId;
     private String orgUnitFullName;
     private String orgUnitShartName;
-    private Collection<Users> usersByOrgUnitId;
 
     @Id
     @Column(name = "OrgUnitId", nullable = false)
@@ -62,14 +63,5 @@ public class OrgUnit {
         result = 31 * result + (orgUnitFullName != null ? orgUnitFullName.hashCode() : 0);
         result = 31 * result + (orgUnitShartName != null ? orgUnitShartName.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "orgUnitByOrgUnitId")
-    public Collection<Users> getUsersByOrgUnitId() {
-        return usersByOrgUnitId;
-    }
-
-    public void setUsersByOrgUnitId(Collection<Users> usersByOrgUnitId) {
-        this.usersByOrgUnitId = usersByOrgUnitId;
     }
 }

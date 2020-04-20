@@ -1,23 +1,22 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Tasks {
     private int taskId;
+    private int createdBy;
     private Timestamp creationDate;
+    private int schemeId;
     private String taskName;
     private String taskString;
     private String taskImage;
     private String taskAnswer;
     private Integer taskTime;
-    private Collection<TaskTags> taskTagsByTaskId;
-    private Users usersByCreatedBy;
-    private Schemes schemesBySchemeId;
-    private Collection<TasksOfPacks> tasksOfPacksByTaskId;
-    private Collection<TestResults> testResultsByTaskId;
 
     @Id
     @Column(name = "TaskId", nullable = false)
@@ -30,6 +29,16 @@ public class Tasks {
     }
 
     @Basic
+    @Column(name = "CreatedBy", nullable = false)
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Basic
     @Column(name = "CreationDate", nullable = true)
     public Timestamp getCreationDate() {
         return creationDate;
@@ -37,6 +46,16 @@ public class Tasks {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @Basic
+    @Column(name = "SchemeId", nullable = false)
+    public int getSchemeId() {
+        return schemeId;
+    }
+
+    public void setSchemeId(int schemeId) {
+        this.schemeId = schemeId;
     }
 
     @Basic
@@ -97,6 +116,8 @@ public class Tasks {
         Tasks tasks = (Tasks) o;
 
         if (taskId != tasks.taskId) return false;
+        if (createdBy != tasks.createdBy) return false;
+        if (schemeId != tasks.schemeId) return false;
         if (creationDate != null ? !creationDate.equals(tasks.creationDate) : tasks.creationDate != null) return false;
         if (taskName != null ? !taskName.equals(tasks.taskName) : tasks.taskName != null) return false;
         if (taskString != null ? !taskString.equals(tasks.taskString) : tasks.taskString != null) return false;
@@ -110,59 +131,14 @@ public class Tasks {
     @Override
     public int hashCode() {
         int result = taskId;
+        result = 31 * result + createdBy;
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = 31 * result + schemeId;
         result = 31 * result + (taskName != null ? taskName.hashCode() : 0);
         result = 31 * result + (taskString != null ? taskString.hashCode() : 0);
         result = 31 * result + (taskImage != null ? taskImage.hashCode() : 0);
         result = 31 * result + (taskAnswer != null ? taskAnswer.hashCode() : 0);
         result = 31 * result + (taskTime != null ? taskTime.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "tasksByTaskId")
-    public Collection<TaskTags> getTaskTagsByTaskId() {
-        return taskTagsByTaskId;
-    }
-
-    public void setTaskTagsByTaskId(Collection<TaskTags> taskTagsByTaskId) {
-        this.taskTagsByTaskId = taskTagsByTaskId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "CreatedBy", referencedColumnName = "UserId", nullable = false)
-    public Users getUsersByCreatedBy() {
-        return usersByCreatedBy;
-    }
-
-    public void setUsersByCreatedBy(Users usersByCreatedBy) {
-        this.usersByCreatedBy = usersByCreatedBy;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "SchemeId", referencedColumnName = "SchemeId", nullable = false)
-    public Schemes getSchemesBySchemeId() {
-        return schemesBySchemeId;
-    }
-
-    public void setSchemesBySchemeId(Schemes schemesBySchemeId) {
-        this.schemesBySchemeId = schemesBySchemeId;
-    }
-
-    @OneToMany(mappedBy = "tasksByTaskId")
-    public Collection<TasksOfPacks> getTasksOfPacksByTaskId() {
-        return tasksOfPacksByTaskId;
-    }
-
-    public void setTasksOfPacksByTaskId(Collection<TasksOfPacks> tasksOfPacksByTaskId) {
-        this.tasksOfPacksByTaskId = tasksOfPacksByTaskId;
-    }
-
-    @OneToMany(mappedBy = "tasksByTaskId")
-    public Collection<TestResults> getTestResultsByTaskId() {
-        return testResultsByTaskId;
-    }
-
-    public void setTestResultsByTaskId(Collection<TestResults> testResultsByTaskId) {
-        this.testResultsByTaskId = testResultsByTaskId;
     }
 }

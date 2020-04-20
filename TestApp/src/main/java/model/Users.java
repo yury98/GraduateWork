@@ -1,22 +1,19 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Users {
     private int userId;
     private String login;
     private String password;
+    private int orgUnitId;
     private Timestamp lastLogin;
     private String userInfo;
-    private Collection<ChangeHistory> changeHistoriesByUserId;
-    private Collection<Packs> packsByUserId;
-    private Collection<Schemes> schemesByUserId;
-    private Collection<Tags> tagsByUserId;
-    private Collection<Tasks> tasksByUserId;
-    private OrgUnit orgUnitByOrgUnitId;
 
     @Id
     @Column(name = "UserId", nullable = false)
@@ -49,6 +46,16 @@ public class Users {
     }
 
     @Basic
+    @Column(name = "OrgUnitId", nullable = false)
+    public int getOrgUnitId() {
+        return orgUnitId;
+    }
+
+    public void setOrgUnitId(int orgUnitId) {
+        this.orgUnitId = orgUnitId;
+    }
+
+    @Basic
     @Column(name = "LastLogin", nullable = true)
     public Timestamp getLastLogin() {
         return lastLogin;
@@ -76,6 +83,7 @@ public class Users {
         Users users = (Users) o;
 
         if (userId != users.userId) return false;
+        if (orgUnitId != users.orgUnitId) return false;
         if (login != null ? !login.equals(users.login) : users.login != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (lastLogin != null ? !lastLogin.equals(users.lastLogin) : users.lastLogin != null) return false;
@@ -89,63 +97,9 @@ public class Users {
         int result = userId;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + orgUnitId;
         result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
         result = 31 * result + (userInfo != null ? userInfo.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "usersByChangeHistoryUserId")
-    public Collection<ChangeHistory> getChangeHistoriesByUserId() {
-        return changeHistoriesByUserId;
-    }
-
-    public void setChangeHistoriesByUserId(Collection<ChangeHistory> changeHistoriesByUserId) {
-        this.changeHistoriesByUserId = changeHistoriesByUserId;
-    }
-
-    @OneToMany(mappedBy = "usersByCreatedBy")
-    public Collection<Packs> getPacksByUserId() {
-        return packsByUserId;
-    }
-
-    public void setPacksByUserId(Collection<Packs> packsByUserId) {
-        this.packsByUserId = packsByUserId;
-    }
-
-    @OneToMany(mappedBy = "usersByCratedBy")
-    public Collection<Schemes> getSchemesByUserId() {
-        return schemesByUserId;
-    }
-
-    public void setSchemesByUserId(Collection<Schemes> schemesByUserId) {
-        this.schemesByUserId = schemesByUserId;
-    }
-
-    @OneToMany(mappedBy = "usersByCreatedBy")
-    public Collection<Tags> getTagsByUserId() {
-        return tagsByUserId;
-    }
-
-    public void setTagsByUserId(Collection<Tags> tagsByUserId) {
-        this.tagsByUserId = tagsByUserId;
-    }
-
-    @OneToMany(mappedBy = "usersByCreatedBy")
-    public Collection<Tasks> getTasksByUserId() {
-        return tasksByUserId;
-    }
-
-    public void setTasksByUserId(Collection<Tasks> tasksByUserId) {
-        this.tasksByUserId = tasksByUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "OrgUnitId", referencedColumnName = "OrgUnitId", nullable = false, insertable=false, updatable=false)
-    public OrgUnit getOrgUnitByOrgUnitId() {
-        return orgUnitByOrgUnitId;
-    }
-
-    public void setOrgUnitByOrgUnitId(OrgUnit orgUnitByOrgUnitId) {
-        this.orgUnitByOrgUnitId = orgUnitByOrgUnitId;
     }
 }

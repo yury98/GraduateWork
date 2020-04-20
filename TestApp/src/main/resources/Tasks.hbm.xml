@@ -4,12 +4,18 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="models.Tasks" table="Tasks" schema="dbo" catalog="TestDatabase">
+    <class name="model.Tasks" table="Tasks" schema="dbo" catalog="TestDatabase">
         <id name="taskId">
             <column name="TaskId" sql-type="int"/>
         </id>
+        <property name="createdBy">
+            <column name="CreatedBy" sql-type="int"/>
+        </property>
         <property name="creationDate">
             <column name="CreationDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="schemeId">
+            <column name="SchemeId" sql-type="int"/>
         </property>
         <property name="taskName">
             <column name="TaskName" sql-type="varchar(100)" length="100" not-null="true"/>
@@ -26,29 +32,5 @@
         <property name="taskTime">
             <column name="TaskTime" sql-type="int" not-null="true"/>
         </property>
-        <many-to-one name="usersByCreatedBy" class="models.Users">
-            <column name="CreatedBy"/>
-        </many-to-one>
-        <many-to-one name="schemesBySchemeId" class="models.Schemes">
-            <column name="SchemeId"/>
-        </many-to-one>
-        <set name="taskTagsByTaskId" inverse="true">
-            <key>
-                <column name="TaskId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.TaskTags"/>
-        </set>
-        <set name="tasksOfPacksByTaskId" inverse="true">
-            <key>
-                <column name="TaskId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.TasksOfPacks"/>
-        </set>
-        <set name="testResultsByTaskId" inverse="true">
-            <key>
-                <column name="TaskId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.TestResults"/>
-        </set>
     </class>
 </hibernate-mapping>

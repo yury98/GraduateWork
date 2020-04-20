@@ -1,5 +1,6 @@
-package controllers;
+package controller;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -15,17 +16,13 @@ import java.io.IOException;
 public class TestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        Configuration configuration = new Configuration().configure();
-//        ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
-//        registry.applySettings(configuration.getProperties());
-//        ServiceRegistry serviceRegistry = registry.buildServiceRegistry();
-//
-//        // builds a session factory from the service registry
-//        SessionFactory sessionFactory = configuration
-//                .buildSessionFactory(serviceRegistry);
-//
-//        Session session = sessionFactory.openSession();
-//        session.beginTransaction();
+        Configuration configuration = new Configuration().configure();
+        // builds a session factory from the service registry
+        SessionFactory sessionFactory = configuration
+                .buildSessionFactory();
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
 //        Session session = new AnnotationConfiguration().configure()
 //                .buildSessionFactory().openSession();
@@ -52,9 +49,7 @@ public class TestServlet extends HttpServlet {
 //
 //        session.save(user);
 //        t.commit();
-        Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration
-                .buildSessionFactory();
+
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/testPage.jsp");
         dispatcher.forward(request, response);
     }

@@ -10,8 +10,6 @@
     <property name="show_sql">true</property>
     <property name="connection.username">yurez</property>
     <property name="connection.password">ifirby</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-
     <mapping resource="ChangeHistory.hbm.xml"/>
     <mapping class="models.ChangeHistory"/>
     <mapping resource="OrgUnit.hbm.xml"/>
@@ -26,13 +24,15 @@
     <mapping class="models.Tags"/>
     <mapping resource="TaskTags.hbm.xml"/>
     <mapping class="models.TaskTags"/>
-    <mapping class="models.Tasks"/>
     <mapping resource="Tasks.hbm.xml"/>
-    <mapping resource="TasksOfPacks.hbm.xml"/>
+    <mapping class="models.Tasks"/>
     <mapping class="models.TasksOfPacks"/>
+    <mapping resource="TasksOfPacks.hbm.xml"/>
     <mapping resource="TestResults.hbm.xml"/>
     <mapping class="models.TestResults"/>
     <mapping resource="Users.hbm.xml"/>
     <mapping class="models.Users"/>
+
+
   </session-factory>
 </hibernate-configuration>

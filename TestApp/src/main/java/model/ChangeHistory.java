@@ -1,14 +1,17 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
 public class ChangeHistory {
     private int changeHistoryId;
     private Timestamp changeHistoryDate;
+    private int changeHistoryUserId;
     private String changeHistoryInfo;
-    private Users usersByChangeHistoryUserId;
 
     @Id
     @Column(name = "ChangeHistoryId", nullable = false)
@@ -31,6 +34,16 @@ public class ChangeHistory {
     }
 
     @Basic
+    @Column(name = "ChangeHistoryUserId", nullable = false)
+    public int getChangeHistoryUserId() {
+        return changeHistoryUserId;
+    }
+
+    public void setChangeHistoryUserId(int changeHistoryUserId) {
+        this.changeHistoryUserId = changeHistoryUserId;
+    }
+
+    @Basic
     @Column(name = "ChangeHistoryInfo", nullable = true, length = 2147483647)
     public String getChangeHistoryInfo() {
         return changeHistoryInfo;
@@ -48,6 +61,7 @@ public class ChangeHistory {
         ChangeHistory that = (ChangeHistory) o;
 
         if (changeHistoryId != that.changeHistoryId) return false;
+        if (changeHistoryUserId != that.changeHistoryUserId) return false;
         if (changeHistoryDate != null ? !changeHistoryDate.equals(that.changeHistoryDate) : that.changeHistoryDate != null)
             return false;
         if (changeHistoryInfo != null ? !changeHistoryInfo.equals(that.changeHistoryInfo) : that.changeHistoryInfo != null)
@@ -60,17 +74,8 @@ public class ChangeHistory {
     public int hashCode() {
         int result = changeHistoryId;
         result = 31 * result + (changeHistoryDate != null ? changeHistoryDate.hashCode() : 0);
+        result = 31 * result + changeHistoryUserId;
         result = 31 * result + (changeHistoryInfo != null ? changeHistoryInfo.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "ChangeHistoryUserId", referencedColumnName = "UserId", nullable = false)
-    public Users getUsersByChangeHistoryUserId() {
-        return usersByChangeHistoryUserId;
-    }
-
-    public void setUsersByChangeHistoryUserId(Users usersByChangeHistoryUserId) {
-        this.usersByChangeHistoryUserId = usersByChangeHistoryUserId;
     }
 }

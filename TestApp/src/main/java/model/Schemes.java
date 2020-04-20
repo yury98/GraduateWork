@@ -1,8 +1,10 @@
-package models;
+package model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Schemes {
@@ -10,8 +12,7 @@ public class Schemes {
     private String schemeName;
     private String schemeAlias;
     private Timestamp creationDate;
-    private Users usersByCratedBy;
-    private Collection<Tasks> tasksBySchemeId;
+    private int cratedBy;
 
     @Id
     @Column(name = "SchemeId", nullable = false)
@@ -53,6 +54,16 @@ public class Schemes {
         this.creationDate = creationDate;
     }
 
+    @Basic
+    @Column(name = "CratedBy", nullable = false)
+    public int getCratedBy() {
+        return cratedBy;
+    }
+
+    public void setCratedBy(int cratedBy) {
+        this.cratedBy = cratedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +72,7 @@ public class Schemes {
         Schemes schemes = (Schemes) o;
 
         if (schemeId != schemes.schemeId) return false;
+        if (cratedBy != schemes.cratedBy) return false;
         if (schemeName != null ? !schemeName.equals(schemes.schemeName) : schemes.schemeName != null) return false;
         if (schemeAlias != null ? !schemeAlias.equals(schemes.schemeAlias) : schemes.schemeAlias != null) return false;
         if (creationDate != null ? !creationDate.equals(schemes.creationDate) : schemes.creationDate != null)
@@ -75,25 +87,7 @@ public class Schemes {
         result = 31 * result + (schemeName != null ? schemeName.hashCode() : 0);
         result = 31 * result + (schemeAlias != null ? schemeAlias.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = 31 * result + cratedBy;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "CratedBy", referencedColumnName = "UserId", nullable = false)
-    public Users getUsersByCratedBy() {
-        return usersByCratedBy;
-    }
-
-    public void setUsersByCratedBy(Users usersByCratedBy) {
-        this.usersByCratedBy = usersByCratedBy;
-    }
-
-    @OneToMany(mappedBy = "schemesBySchemeId")
-    public Collection<Tasks> getTasksBySchemeId() {
-        return tasksBySchemeId;
-    }
-
-    public void setTasksBySchemeId(Collection<Tasks> tasksBySchemeId) {
-        this.tasksBySchemeId = tasksBySchemeId;
     }
 }

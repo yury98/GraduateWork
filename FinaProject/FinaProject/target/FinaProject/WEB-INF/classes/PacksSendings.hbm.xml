@@ -8,6 +8,9 @@
         <id name="sendingId">
             <column name="SendingId" sql-type="int"/>
         </id>
+        <property name="packId">
+            <column name="PackId" sql-type="int"/>
+        </property>
         <property name="sendingDate">
             <column name="SendingDate" sql-type="datetime" not-null="true"/>
         </property>

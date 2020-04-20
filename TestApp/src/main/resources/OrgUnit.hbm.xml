@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="models.OrgUnit" table="OrgUnit" schema="dbo" catalog="TestDatabase">
+    <class name="model.OrgUnit" table="OrgUnit" schema="dbo" catalog="TestDatabase">
         <id name="orgUnitId">
             <column name="OrgUnitId" sql-type="int"/>
         </id>
@@ -14,11 +14,5 @@
         <property name="orgUnitShartName">
             <column name="OrgUnitShartName" sql-type="varchar(30)" length="30" not-null="true"/>
         </property>
-        <set name="usersByOrgUnitId" inverse="true">
-            <key>
-                <column name="OrgUnitId"/>
-            </key>
-            <one-to-many not-found="ignore" class="models.Users"/>
-        </set>
     </class>
 </hibernate-mapping>

@@ -8,6 +8,12 @@
         <id name="resultId">
             <column name="ResultId" sql-type="int"/>
         </id>
+        <property name="sendingId">
+            <column name="SendingId" sql-type="int"/>
+        </property>
+        <property name="taskId">
+            <column name="TaskId" sql-type="int"/>
+        </property>
         <property name="result">
             <column name="Result" sql-type="tinyint" not-null="true"/>
         </property>

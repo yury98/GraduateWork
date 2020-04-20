@@ -4,15 +4,15 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="models.TasksOfPacks" table="TasksOfPacks" schema="dbo" catalog="TestDatabase">
+    <class name="model.TasksOfPacks" table="TasksOfPacks" schema="dbo" catalog="TestDatabase">
         <id name="tasksOfPacksId">
             <column name="TasksOfPacksId" sql-type="int"/>
         </id>
-        <many-to-one name="tasksByTaskId" class="models.Tasks">
-            <column name="TaskId"/>
-        </many-to-one>
-        <many-to-one name="packsByPackId" class="models.Packs">
-            <column name="PackId"/>
-        </many-to-one>
+        <property name="taskId">
+            <column name="TaskId" sql-type="int"/>
+        </property>
+        <property name="packId">
+            <column name="PackId" sql-type="int"/>
+        </property>
     </class>
 </hibernate-mapping>

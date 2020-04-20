@@ -11,28 +11,33 @@
     <property name="connection.username">yurez</property>
     <property name="connection.password">ifirby</property>
     <mapping resource="ChangeHistory.hbm.xml"/>
-    <mapping class="models.ChangeHistory"/>
+    <mapping class="model.ChangeHistory"/>
     <mapping resource="OrgUnit.hbm.xml"/>
-    <mapping class="models.OrgUnit"/>
+    <mapping class="model.OrgUnit"/>
     <mapping resource="Packs.hbm.xml"/>
-    <mapping class="models.Packs"/>
+    <mapping class="model.Packs"/>
     <mapping resource="PacksSendings.hbm.xml"/>
-    <mapping class="models.PacksSendings"/>
+    <mapping class="model.PacksSendings"/>
     <mapping resource="Schemes.hbm.xml"/>
-    <mapping class="models.Schemes"/>
+    <mapping class="model.Schemes"/>
     <mapping resource="Tags.hbm.xml"/>
-    <mapping class="models.Tags"/>
+    <mapping class="model.Tags"/>
     <mapping resource="TaskTags.hbm.xml"/>
-    <mapping class="models.TaskTags"/>
+    <mapping class="model.TaskTags"/>
     <mapping resource="Tasks.hbm.xml"/>
-    <mapping class="models.Tasks"/>
-    <mapping class="models.TasksOfPacks"/>
+    <mapping class="model.Tasks"/>
     <mapping resource="TasksOfPacks.hbm.xml"/>
+    <mapping class="model.TasksOfPacks"/>
     <mapping resource="TestResults.hbm.xml"/>
-    <mapping class="models.TestResults"/>
+    <mapping class="model.TestResults"/>
     <mapping resource="Users.hbm.xml"/>
-    <mapping class="models.Users"/>
+    <mapping class="model.Users"/>
 
 
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
