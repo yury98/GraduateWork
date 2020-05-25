@@ -24,14 +24,14 @@
     <form action="<%=request.getContextPath()%>/login" method="post">
 
         <div class="form-group">
-            <label for="login">User Name:</label> <input type="text"
-                                                         class="form-control" id="login" placeholder="User Name"
+            <label for="login">Логин<label> <input type="text"
+                                                         class="form-control" id="login" placeholder="Логин"
                                                          name="login" required>
         </div>
 
         <div class="form-group">
-            <label for="password">Password:</label> <input type="password"
-                                                           class="form-control" id="password" placeholder="Password"
+            <label for="password">Пароль</label> <input type="password"
+                                                           class="form-control" id="password" placeholder="Пароль"
                                                            name="password" required>
         </div>
 
