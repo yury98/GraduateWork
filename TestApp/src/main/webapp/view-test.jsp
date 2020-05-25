@@ -83,7 +83,7 @@
                 <button type="button" class="btn btn-primary">Следующее задание</button>
             </div>
             <button type="button" class="btn btn-primary">Эталонное решение</button>
-            <button type="button" class="btn btn-primary save">Завершить тестирование</button>
+            <button type="button" class="btn btn-primary save">Завершить</button>
         </div>
     </div>
 </div>
