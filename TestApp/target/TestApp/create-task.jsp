@@ -14,7 +14,7 @@
             position: absolute;
             top: 50px;
             right: 0;
-            bottom: 50px;
+            bottom: 0px;
             left: 0;
         }
 
@@ -22,18 +22,19 @@
             position: absolute;
             top: 50px;
             right: 0;
-            bottom: 50px;
+            bottom: 0px;
             left: 0;
         }
 
         .split {
-            height: 100%;
+            height: 95%;
             width: 50%;
             position: fixed;
             z-index: 1;
             top: 0;
             overflow-x: hidden;
             padding-top: 20px;
+
         }
 
         .left {
@@ -83,7 +84,7 @@
     <div class="form-row">
         <div class="col custom-file images">
             <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile" data-browse="Обзор">Выберите изображение</label>
+            <label class="custom-file-label" for="customFile" data-browse="Обзор">Схема.png</label>
         </div>
         <div class="col">
             <div class="col-md-8 form-check check">
